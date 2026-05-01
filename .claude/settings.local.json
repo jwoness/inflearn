@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(keybindings-help)",
+      "Skill(update-config)",
+      "Bash(claude update *)",
+      "Bash(git config *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "agent",
+            "prompt": "Check the hook input: $ARGUMENTS\n\nLook at tool_input.file_path. If the path starts with 'D:\\claude\\antigravity\\inflearn\\' (or uses forward slashes: 'D:/claude/antigravity/inflearn/') AND does NOT contain 'CLAUDE.md', then update D:\\claude\\antigravity\\inflearn\\CLAUDE.md to reflect the current project structure and architecture. Otherwise exit immediately without doing anything.",
+            "timeout": 60,
+            "statusMessage": "CLAUDE.md 업데이트 확인 중..."
+          }
+        ]
+      }
+    ]
+  }
+}
